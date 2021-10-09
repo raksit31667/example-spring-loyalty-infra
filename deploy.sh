@@ -19,5 +19,7 @@ aws cloudformation deploy \
 --stack-name "eks-raksit31667" \
 --capabilities CAPABILITY_NAMED_IAM \
 --template-file "eks-raksit31667/template.yml" \
---parameter-overrides "file://eks-raksit31667/parameters.json" \
+--parameter-overrides \
+AvailabilityZones="ap-southeast-1a,ap-southeast-1b,ap-southeast-1c" \
+RemoteAccessCIDR="124.120.16.95/32" KeyPairName="eks-raksit31667" EKSClusterName="raksit31667" \
 --no-fail-on-empty-changeset
