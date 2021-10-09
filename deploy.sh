@@ -22,5 +22,5 @@ aws cloudformation deploy \
 --parameter-overrides \
 AvailabilityZones="ap-southeast-1a,ap-southeast-1b,ap-southeast-1c" \
 RemoteAccessCIDR="124.120.16.95/32" KeyPairName="eks-raksit31667" EKSClusterName="raksit31667" \
-AdditionalEKSAdminUserArn="arn:aws:iam::564702493239:user/example-spring-loyalty"
+AdditionalEKSAdminUserArn="arn:aws:iam::564702493239:user/example-spring-loyalty" \
 --no-fail-on-empty-changeset
