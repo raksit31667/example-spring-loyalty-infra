@@ -1,5 +1,6 @@
 steps:
-  - command: bin/ci-aws-thing
+  - label: ":aws-iam: Assume ExampleSpringLoyaltyInfra role"
+    command: bin/ci-aws-thing
     plugins:
       - cultureamp/aws-assume-role#v0.1.0:
           role: "arn:aws:iam::564702493239:role/ExampleSpringLoyaltyInfra"
