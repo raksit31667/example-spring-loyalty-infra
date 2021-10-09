@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425
+set -euxo pipefail
+
+aws cloudformation deploy \
+--stack-name "iam-role-example-spring-loyalty" \
+--capabilities CAPABILITY_NAMED_IAM \
+--template-file "iam-role-example-spring-loyalty/template.yml" \
+--no-fail-on-empty-changeset
