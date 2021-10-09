@@ -8,3 +8,9 @@ aws cloudformation deploy \
 --capabilities CAPABILITY_NAMED_IAM \
 --template-file "iam-role-example-spring-loyalty/template.yml" \
 --no-fail-on-empty-changeset
+
+aws cloudformation deploy \
+--stack-name "kinesis-data-stream-activity-performed" \
+--capabilities CAPABILITY_NAMED_IAM \
+--template-file "kinesis-data-stream-activity-performed/template.yml" \
+--no-fail-on-empty-changeset
