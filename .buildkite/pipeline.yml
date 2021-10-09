@@ -1,10 +1,8 @@
 steps:
-  - label: ":aws-iam: Assume ExampleSpringLoyaltyInfra role"
-    command: bin/ci-aws-thing
+  - label: ":aws-cloudformation: Deploy Cloudformation stacks"
+    command: ./deploy.sh
     plugins:
       - cultureamp/aws-assume-role#v0.1.0:
           role: "arn:aws:iam::564702493239:role/ExampleSpringLoyaltyInfra"
-  - label: ":aws-cloudformation: Deploy Cloudformation stacks"
-    command: ./deploy.sh
     concurrency: 1
     concurrency_group: 'cloudformation'
