@@ -17,7 +17,7 @@ aws cloudformation deploy \
 
 aws cloudformation deploy \
 --stack-name "eks-raksit31667" \
---capabilities CAPABILITY_AUTO_EXPAND \
+--capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
 --template-file "eks-raksit31667/template.yml" \
 --parameter-overrides \
 AvailabilityZones="ap-southeast-1a,ap-southeast-1b,ap-southeast-1c" \
