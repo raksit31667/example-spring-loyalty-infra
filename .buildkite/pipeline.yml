@@ -1,0 +1,5 @@
+steps:
+  - label: ":aws-cloudformation: Deploy Cloudformation stacks"
+    command: ./deploy.sh
+    concurrency: 1
+    concurrency_group: 'cloudformation'
