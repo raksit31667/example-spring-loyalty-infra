@@ -18,6 +18,17 @@ Resources:
                 - !Sub "arn:aws:iam::${AWS::AccountId}:user/example-spring-loyalty"
             Action:
               - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: ExampleSpringLoyaltyStreamConsumer
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "dynamodb:*"
+                Resource:
+                  - !Sub "arn:aws:dynamodb:${AWS::AccountId}:${AWS::AccountId}:table/example-spring-loyalty-lock"
+                  - !Sub "arn:aws:dynamodb:${AWS::AccountId}:${AWS::AccountId}:table/example-spring-loyalty-checkpoint"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
         - !Sub "arn:aws:iam::${AWS::AccountId}:policy/ActivityPerformedDataStreamConsumer"
