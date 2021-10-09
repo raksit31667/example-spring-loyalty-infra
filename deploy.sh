@@ -14,3 +14,10 @@ aws cloudformation deploy \
 --capabilities CAPABILITY_NAMED_IAM \
 --template-file "kinesis-data-stream-activity-performed/template.yml" \
 --no-fail-on-empty-changeset
+
+aws cloudformation deploy \
+--stack-name "eks-raksit31667" \
+--capabilities CAPABILITY_NAMED_IAM \
+--template-file "eks-raksit31667/template.yml" \
+--parameter-overrides "file://eks-raksit31667/parameters.yml"
+--no-fail-on-empty-changeset
