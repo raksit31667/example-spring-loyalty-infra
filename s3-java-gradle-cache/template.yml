@@ -6,4 +6,4 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
-      BucketName: gradle-cache
+      BucketName: java-gradle-cache

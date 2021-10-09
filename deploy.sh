@@ -16,9 +16,9 @@ aws cloudformation deploy \
 --no-fail-on-empty-changeset
 
 aws cloudformation deploy \
---stack-name "s3-gradle-cache" \
+--stack-name "s3-java-gradle-cache" \
 --capabilities CAPABILITY_NAMED_IAM \
---template-file "s3-gradle-cache/template.yml" \
+--template-file "s3-java-gradle-cache/template.yml" \
 --no-fail-on-empty-changeset
 
 aws cloudformation deploy \
