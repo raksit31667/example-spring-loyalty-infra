@@ -12,7 +12,8 @@ Resources:
   ActivityPerformedDataStreamConsumerPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      Description: Policy for creating a test database
+      ManagedPolicyName: ActivityPerformedDataStreamConsumer
+      Description: Policy for consuming data records from ActivityPerformedDataStream
       Path: /
       PolicyDocument:
         Version: "2012-10-17"
