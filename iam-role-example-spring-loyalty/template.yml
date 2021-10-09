@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for IAM role of example-spring-loyalty"
+
+Resources:
+  ExampleSpringLoyaltyRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: ExampleSpringLoyalty
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - s3.amazonaws.com
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:user/example-spring-loyalty"
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
