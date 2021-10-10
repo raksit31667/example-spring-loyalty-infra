@@ -16,6 +16,7 @@ Resources:
                 - s3.amazonaws.com
               AWS:
                 - !Sub "arn:aws:iam::${AWS::AccountId}:user/example-spring-loyalty"
+                - !Sub "arn:aws:iam::${AWS::AccountId}:role/buildkite-Role"
             Action:
               - 'sts:AssumeRole'
       Policies:
