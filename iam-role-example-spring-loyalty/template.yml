@@ -16,7 +16,6 @@ Resources:
                 - s3.amazonaws.com
               AWS:
                 - !Sub "arn:aws:iam::${AWS::AccountId}:user/example-spring-loyalty"
-                - !Sub "arn:aws:iam::${AWS::AccountId}:role/buildkite-Role"
             Action:
               - 'sts:AssumeRole'
       Policies:
@@ -30,16 +29,6 @@ Resources:
                 Resource:
                   - !Sub "arn:aws:dynamodb:${AWS::AccountId}:${AWS::AccountId}:table/example-spring-loyalty-lock"
                   - !Sub "arn:aws:dynamodb:${AWS::AccountId}:${AWS::AccountId}:table/example-spring-loyalty-checkpoint"
-        - PolicyName: ExampleSpringLoyaltyGradleCache
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - "s3:*"
-                Resource:
-                  - arn:aws:s3:::java-gradle-cache
-                  - arn:aws:s3:::java-gradle-cache/*
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
         - !Sub "arn:aws:iam::${AWS::AccountId}:policy/ActivityPerformedDataStreamConsumer"

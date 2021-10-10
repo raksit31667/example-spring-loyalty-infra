@@ -7,3 +7,19 @@ Resources:
     DeletionPolicy: Delete
     Properties:
       BucketName: java-gradle-cache
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: java-gradle-cache
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action: "s3:*"
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:role/buildkite-Role"
+            Resource:
+              - arn:aws:s3:::java-gradle-cache
+              - arn:aws:s3:::java-gradle-cache/*
