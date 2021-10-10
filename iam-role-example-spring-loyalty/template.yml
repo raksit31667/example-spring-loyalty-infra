@@ -39,6 +39,7 @@ Resources:
                   - "s3:*"
                 Resource:
                   - arn:aws:s3:::java-gradle-cache
+                  - arn:aws:s3:::java-gradle-cache/*
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
         - !Sub "arn:aws:iam::${AWS::AccountId}:policy/ActivityPerformedDataStreamConsumer"
