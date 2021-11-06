@@ -8,7 +8,7 @@ Resources:
       DBInstanceIdentifier: example-spring-loyalty-db
       DBName: ExampleSpringLoyalty
       DBInstanceClass: db.t3.micro
-      AllocatedStorage: 1
+      AllocatedStorage: 20
       Engine: postgres
       EngineVersion: 13.3
       MasterUsername:
