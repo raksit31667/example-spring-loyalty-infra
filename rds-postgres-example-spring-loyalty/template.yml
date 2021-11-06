@@ -6,7 +6,7 @@ Resources:
     Type: AWS::RDS::DBInstance
     Properties:
       DBInstanceIdentifier: example-spring-loyalty-db
-      DBName: example-spring-loyalty-db
+      DBName: ExampleSpringLoyalty
       DBInstanceClass: db.t3.micro
       AllocatedStorage: 1
       Engine: postgres
