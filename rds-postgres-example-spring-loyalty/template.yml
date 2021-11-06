@@ -55,5 +55,5 @@ Resources:
       FromPort: 5432
       ToPort: 5432
       IpProtocol: tcp
-      GroupId: !GetAtt ExampleSpringLoyaltySecurityGroup.GroupId
-    DependsOn: ExampleSpringLoyaltySecurityGroup
+      GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
+    DependsOn: ExampleSpringLoyaltyPostgreSQLSecurityGroup
