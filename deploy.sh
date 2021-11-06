@@ -22,6 +22,12 @@ aws cloudformation deploy \
 --no-fail-on-empty-changeset
 
 aws cloudformation deploy \
+--stack-name "rds-postgres-example-spring-loyalty" \
+--capabilities CAPABILITY_NAMED_IAM \
+--template-file "rds-postgres-example-spring-loyalty/template.yml" \
+--no-fail-on-empty-changeset
+
+aws cloudformation deploy \
 --stack-name "eks-raksit31667" \
 --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND \
 --template-file "eks-raksit31667/template.yml" \
