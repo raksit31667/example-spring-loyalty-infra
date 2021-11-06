@@ -11,9 +11,10 @@ Resources:
       AllocatedStorage: 1
       Engine: postgres
       EngineVersion: 13.3
-      MasterUsername: postgres
+      MasterUsername:
+        Fn::Sub: "{{resolve:secretsmanager:${ExampleSpringLoyaltyPostgreSQLSecret}::DB_USERNAME}}"
       MasterUserPassword:
-        Fn::Sub: "{{resolve:secretsmanager:${ExampleSpringLoyaltyPostgreSQLSecret}::password}}"
+        Fn::Sub: "{{resolve:secretsmanager:${ExampleSpringLoyaltyPostgreSQLSecret}::DB_PASSWORD}}"
       Port: 5432
       PubliclyAccessible: true
       StorageEncrypted: false
@@ -24,6 +25,7 @@ Resources:
       Name: ExampleSpringLoyaltyPostgreSQLSecret
       Description: "This secret has a dynamically generated secret password."
       GenerateSecretString:
+        SecretStringTemplate: '{"DB_USERNAME": "postgres"}'
         GenerateStringKey: DB_PASSWORD
         PasswordLength: 16
         ExcludeCharacters: '"@/\'
