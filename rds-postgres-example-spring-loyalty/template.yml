@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for RDS PostgreSQL for example-spring-loyalty"
+
+Resources:
+  ExampleSpringLoyaltyPostgreSQL:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: example-spring-loyalty-db
+      DBName: example-spring-loyalty-db
+      DBInstanceClass: db.t3.micro
+      AllocatedStorage: 1
+      Engine: postgres
+      EngineVersion: 13.3
+      MasterUsername: postgres
+      MasterUserPassword:
+        Fn::Sub: "{{resolve:secretsmanager:${ExampleSpringLoyaltyPostgreSQLSecret}::password}}"
+      Port: 5432
+      PubliclyAccessible: true
+      StorageEncrypted: false
+
+  ExampleSpringLoyaltyPostgreSQLSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: ExampleSpringLoyaltyPostgreSQLSecret
+      Description: "This secret has a dynamically generated secret password."
+      GenerateSecretString:
+        GenerateStringKey: DB_PASSWORD
+        PasswordLength: 16
+        ExcludeCharacters: '"@/\'
+
+  ExampleSpringLoyaltyPostgreSQLSecretAttachment:
+    Type: AWS::SecretsManager::SecretTargetAttachment
+    Properties:
+      SecretId: !Ref ExampleSpringLoyaltyPostgreSQLSecret
+      TargetId: !Ref ExampleSpringLoyaltyPostgreSQL
+      TargetType: AWS::RDS::DBInstance
+
