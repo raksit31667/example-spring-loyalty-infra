@@ -18,6 +18,10 @@ Resources:
       Port: 5432
       PubliclyAccessible: true
       StorageEncrypted: false
+      VPCSecurityGroups:
+        - !GetAtt ExampleSpringLoyaltySecurityGroup.GroupId
+      DependsOn:
+        - ExampleSpringLoyaltySecurityGroup
 
   ExampleSpringLoyaltyPostgreSQLSecret:
     Type: AWS::SecretsManager::Secret
@@ -37,3 +41,19 @@ Resources:
       TargetId: !Ref ExampleSpringLoyaltyPostgreSQL
       TargetType: AWS::RDS::DBInstance
 
+  ExampleSpringLoyaltyPostgreSQLSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: ExampleSpringLoyaltyPostgreSQLSecurityGroup
+      GroupDescription: Security group to whitelist access by IP
+
+  ExampleSpringLoyaltyPostgreSQLLocalMachineWhitelist:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      CidrIp: 119.76.14.135/32
+      Description: Used to restrict RDS public access to only my local machine
+      FromPort: 5432
+      ToPort: 5432
+      IpProtocol: tcp
+      GroupId: !GetAtt ExampleSpringLoyaltySecurityGroup.GroupId
+    DependsOn: ExampleSpringLoyaltySecurityGroup
