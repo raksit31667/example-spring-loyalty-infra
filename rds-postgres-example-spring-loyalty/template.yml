@@ -19,9 +19,9 @@ Resources:
       PubliclyAccessible: true
       StorageEncrypted: false
       VPCSecurityGroups:
-        - !GetAtt ExampleSpringLoyaltySecurityGroup.GroupId
+        - !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
       DependsOn:
-        - ExampleSpringLoyaltySecurityGroup
+        - ExampleSpringLoyaltyPostgreSQLSecurityGroup
 
   ExampleSpringLoyaltyPostgreSQLSecret:
     Type: AWS::SecretsManager::Secret
