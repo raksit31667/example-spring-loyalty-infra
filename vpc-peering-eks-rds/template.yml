@@ -15,3 +15,11 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/24
       RouteTableId: rtb-037c996623b5a6fca
       VpcPeeringConnectionId: !Ref VpcPeeringEksRds
+
+  # Add route: All traffic to (destination) the RDS cluster CIDR block is via the VPC Peering Connection (target)
+  VpcPeeringRdsRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 192.168.0.0/16
+      RouteTableId: rtb-b6ecb9d0
+      VpcPeeringConnectionId: !Ref VpcPeeringEksRds
