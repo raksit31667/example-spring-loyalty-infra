@@ -1,0 +1,8 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for VPC peering connection of EKS and RDS"
+
+Resources:
+  Type: AWS::EC2::VPCPeeringConnection
+  Properties:
+    PeerVpcId: vpc-e3488985
+    VpcId: vpc-009589b536dbe9f14
