@@ -61,7 +61,7 @@ Resources:
   ExampleSpringLoyaltyIngressTrafficFromEksToRdsWhitelist:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      CidrIp: 10.0.0.0/24
+      CidrIp: 10.0.0.0/16
       Description: Used to allow all ingress traffic from the EKS cluster to the RDS instance
       FromPort: 5432
       ToPort: 5432

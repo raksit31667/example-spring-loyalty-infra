@@ -20,6 +20,6 @@ Resources:
   VpcPeeringRdsRoute:
     Type: AWS::EC2::Route
     Properties:
-      DestinationCidrBlock: 10.0.0.0/24
+      DestinationCidrBlock: 10.0.0.0/16
       RouteTableId: rtb-b6ecb9d0
       VpcPeeringConnectionId: !Ref VpcPeeringEksRds
