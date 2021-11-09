@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for IAM role of EKS Service Account"
+
+Resources:
+  EksServiceAccountRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: eks-quickstart-ServiceAccountRole
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.ap-southeast-1.amazonaws.com/id/A5EB6FC7FB3B22569B55CD01605AD3CB"
+            Action:
+              - 'sts:AssumeRoleWithWebIdentity'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/IAMFullAccess
+        - arn:aws:iam::aws:policy/AdministratorAccess
