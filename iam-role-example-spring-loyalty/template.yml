@@ -26,9 +26,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - "dynamodb:*"
-                Resource:
-                  - !Sub "arn:aws:dynamodb:${AWS::AccountId}:${AWS::AccountId}:table/example-spring-loyalty-lock"
-                  - !Sub "arn:aws:dynamodb:${AWS::AccountId}:${AWS::AccountId}:table/example-spring-loyalty-checkpoint"
+                Resource: "*"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
         - !Sub "arn:aws:iam::${AWS::AccountId}:policy/ActivityPerformedDataStreamConsumer"
