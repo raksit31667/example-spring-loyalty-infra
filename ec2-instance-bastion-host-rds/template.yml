@@ -34,6 +34,7 @@ Resources:
           Content-Transfer-Encoding: 7bit
           Content-Disposition: attachment; filename="userdata.txt"
 
+          #!/bin/bash -xe
           function create_ssh_user() {
             local username="$1"
             local ssh_public_key="$2"
@@ -44,7 +45,7 @@ Resources:
               touch .ssh/authorized_keys
               chmod 600 .ssh/authorized_keys
               echo $ssh_public_key > .ssh/authorized_keys
-            EOF
+          EOF
           }
 
           usernames=(
