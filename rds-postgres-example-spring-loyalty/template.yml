@@ -50,7 +50,7 @@ Resources:
   ExampleSpringLoyaltyPostgreSQLBastionHostWhitelist:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      CidrIp: 172.31.25.145/32
+      CidrIp: !Sub ['${BastionHostPrivateIP}/32', BastionHostPrivateIP: !ImportValue ExampleSpringLoyaltyPostgreSQLBastionHostPrivateIP]
       Description: Used to restrict RDS public access to only bastion host example-spring-loyalty-db-bastion-host
       FromPort: 5432
       ToPort: 5432
