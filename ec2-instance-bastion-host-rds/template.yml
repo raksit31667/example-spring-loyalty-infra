@@ -58,6 +58,7 @@ Resources:
           do
             create_ssh_user "${usernames[i]}" "${ssh_public_keys[i]}" || true
           done
+          --//--
 
   ExampleSpringLoyaltyPostgreSQLBastionHostSecurityGroup:
     Type: AWS::EC2::SecurityGroup
