@@ -8,6 +8,8 @@ Resources:
       KeyName: example-spring-loyalty-db-bastion-host
       ImageId: ami-024221a59c9020e72 # https://github.com/widdix/aws-cf-templates/blob/master/vpc/vpc-ssh-bastion.yaml
       InstanceType: t2.micro
+      SecurityGroupIds:
+        - !GetAtt ExampleSpringLoyaltyPostgreSQLBastionHostSecurityGroup.GroupId
       Tags:
         - Key: Name
           Value: example-spring-loyalty-db-bastion-host
