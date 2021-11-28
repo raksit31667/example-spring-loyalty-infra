@@ -6,8 +6,11 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       KeyName: example-spring-loyalty-db-bastion-host
-      ImageId: ami-024221a59c9020e72
+      ImageId: ami-024221a59c9020e72 # https://github.com/widdix/aws-cf-templates/blob/master/vpc/vpc-ssh-bastion.yaml
       InstanceType: t2.micro
+      Tags:
+        - Key: Name
+          Value: example-spring-loyalty-db-bastion-host
       UserData:
         Fn::Base64: |
           function create_ssh_user() {
@@ -45,7 +48,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       CidrIp: 119.76.15.162/32
-      Description: Used to restrict RDS public access to only my local machine
+      Description: Used to restrict bastion host public access to only my local machine
       FromPort: 22
       ToPort: 22
       IpProtocol: tcp
