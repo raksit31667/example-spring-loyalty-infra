@@ -38,7 +38,7 @@ Resources:
   ExampleSpringLoyaltyPostgreSQLBastionHostSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: ExampleSpringLoyaltyPostgreSQLSecurityGroup
+      GroupName: ExampleSpringLoyaltyPostgreSQLBastionHostSecurityGroup
       GroupDescription: Security group to whitelist access by IP
 
   ExampleSpringLoyaltyPostgreSQLBastionHostLocalMachineWhitelist:
