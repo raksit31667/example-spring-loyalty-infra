@@ -22,6 +22,12 @@ aws cloudformation deploy \
 --no-fail-on-empty-changeset
 
 aws cloudformation deploy \
+--stack-name "ec2-instance-bastion-host-rds" \
+--capabilities CAPABILITY_NAMED_IAM \
+--template-file "ec2-instance-bastion-host-rds/template.yml" \
+--no-fail-on-empty-changeset
+
+aws cloudformation deploy \
 --stack-name "rds-postgres-example-spring-loyalty" \
 --capabilities CAPABILITY_NAMED_IAM \
 --template-file "rds-postgres-example-spring-loyalty/template.yml" \
