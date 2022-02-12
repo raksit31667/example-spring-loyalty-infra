@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "[pre-push hook] Run AWS CloudFormation Linter"
+cfn-lint ./**/template.yml
