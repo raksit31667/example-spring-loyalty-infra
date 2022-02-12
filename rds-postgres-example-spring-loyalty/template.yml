@@ -20,8 +20,6 @@ Resources:
       StorageEncrypted: false
       VPCSecurityGroups:
         - !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
-    DependsOn:
-      - ExampleSpringLoyaltyPostgreSQLSecurityGroup
 
   ExampleSpringLoyaltyPostgreSQLSecret:
     Type: AWS::SecretsManager::Secret
@@ -56,7 +54,6 @@ Resources:
       ToPort: 5432
       IpProtocol: tcp
       GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
-    DependsOn: ExampleSpringLoyaltyPostgreSQLSecurityGroup
 
   ExampleSpringLoyaltyIngressTrafficFromEksToRdsWhitelist:
     Type: AWS::EC2::SecurityGroupIngress
@@ -67,5 +64,3 @@ Resources:
       ToPort: 5432
       IpProtocol: tcp
       GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
-    DependsOn: ExampleSpringLoyaltyPostgreSQLSecurityGroup
-
