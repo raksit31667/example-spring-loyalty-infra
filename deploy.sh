@@ -3,35 +3,18 @@
 # https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425
 set -euxo pipefail
 
-aws cloudformation deploy \
---stack-name "iam-role-example-spring-loyalty" \
---capabilities CAPABILITY_NAMED_IAM \
---template-file "iam-role-example-spring-loyalty/template.yml" \
---no-fail-on-empty-changeset
+directories="$(ls -1d ./*/)"
 
-aws cloudformation deploy \
---stack-name "kinesis-data-stream-activity-performed" \
---capabilities CAPABILITY_NAMED_IAM \
---template-file "kinesis-data-stream-activity-performed/template.yml" \
---no-fail-on-empty-changeset
-
-aws cloudformation deploy \
---stack-name "s3-java-gradle-cache" \
---capabilities CAPABILITY_NAMED_IAM \
---template-file "s3-java-gradle-cache/template.yml" \
---no-fail-on-empty-changeset
-
-aws cloudformation deploy \
---stack-name "ec2-instance-bastion-host-rds" \
---capabilities CAPABILITY_NAMED_IAM \
---template-file "ec2-instance-bastion-host-rds/template.yml" \
---no-fail-on-empty-changeset
-
-aws cloudformation deploy \
---stack-name "rds-postgres-example-spring-loyalty" \
---capabilities CAPABILITY_NAMED_IAM \
---template-file "rds-postgres-example-spring-loyalty/template.yml" \
---no-fail-on-empty-changeset
+for directory in $directories
+do
+  local directory_name="$(basename $directory)"
+  
+  aws cloudformation deploy \
+  --stack-name $directory_name \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --template-file "$directory_name/template.yml" \
+  --no-fail-on-empty-changeset
+done
 
 # Uncomment to deploy EKS stacks
 
