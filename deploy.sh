@@ -7,7 +7,7 @@ directories="$(ls -1d ./*/)"
 
 for directory in $directories
 do
-  local directory_name="$(basename $directory)"
+  directory_name="$(basename $directory)"
   
   aws cloudformation deploy \
   --stack-name $directory_name \
