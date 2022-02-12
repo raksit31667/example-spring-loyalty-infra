@@ -8,6 +8,10 @@ directories="$(ls -1d ./*/)"
 for directory in $directories
 do
   directory_name="$(basename $directory)"
+
+  if [[ $directory_name == 'eks-raksit31667' ]]; then
+    continue
+  fi
   
   aws cloudformation deploy \
   --stack-name $directory_name \
