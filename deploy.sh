@@ -21,6 +21,7 @@ do
 done
 
 # Uncomment to deploy EKS stacks
+# Ref: https://s3.amazonaws.com/aws-quickstart/quickstart-amazon-eks/templates/amazon-eks-entrypoint-new-vpc.template.yaml
 
 #aws cloudformation deploy \
 #--stack-name "eks-raksit31667" \
