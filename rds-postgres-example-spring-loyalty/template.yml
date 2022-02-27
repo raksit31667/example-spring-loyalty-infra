@@ -52,7 +52,7 @@ Resources:
         shared_preload_libraries: pg_stat_statements,pgaudit
         log_connections: on
 
-  VpcPeeringEksRds:
+  VpcPeeringBuildkiteAgentRds:
     Type: AWS::EC2::VPCPeeringConnection
     Properties:
       PeerVpcId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.VpcId
@@ -74,11 +74,27 @@ Resources:
       IpProtocol: tcp
       GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
 
-  ExampleSpringLoyaltyIngressTrafficFromEksToRdsWhitelist:
+  # Add route: All traffic to (destination) the RDS VPC CIDR block is via the VPC Peering Connection (target)
+  VpcPeeringBuildkiteAgentRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 172.31.0.0/16
+      RouteTableId: rtb-037c996623b5a6fca
+      VpcPeeringConnectionId: !Ref VpcPeeringBuildkiteAgentRds
+
+  # Add route: All traffic to (destination) the EKS cluster CIDR block is via the VPC Peering Connection (target)
+  VpcPeeringRdsRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 10.0.0.0/16
+      RouteTableId: rtb-0bc45e8cfe39f9737
+      VpcPeeringConnectionId: !Ref VpcPeeringBuildkiteAgentRds
+
+  ExampleSpringLoyaltyIngressTrafficFromBuildkiteAgentToRdsWhitelist:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       CidrIp: 10.0.0.0/16
-      Description: Used to allow all ingress traffic from the EKS cluster to the RDS instance
+      Description: Used to allow all ingress traffic from the Buildkite agent to the RDS instance
       FromPort: 5432
       ToPort: 5432
       IpProtocol: tcp
