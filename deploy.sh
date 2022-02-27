@@ -24,8 +24,8 @@ done
 
 rds_instance_identifier="example-spring-loyalty-db"
 
-rds_password="$(aws secretsmanager get-secret-value --secret-id ExampleSpringLoyaltyPostgreSQLSecret --query
-SecretString --output text | jq -r '.DB_PASSWORD')"
+rds_password="$(aws secretsmanager get-secret-value --secret-id ExampleSpringLoyaltyPostgreSQLSecret \
+--query SecretString --output text | jq -r '.DB_PASSWORD')"
 
 rds_host="$(aws rds describe-db-instances --db-instance-identifier $rds_instance_identifier | jq -r '.DBInstances[0]
 .Endpoint.Address')"
