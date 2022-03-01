@@ -52,12 +52,6 @@ Resources:
         shared_preload_libraries: pg_stat_statements,pgaudit
         log_connections: on
 
-  VpcPeeringBuildkiteAgentRds:
-    Type: AWS::EC2::VPCPeeringConnection
-    Properties:
-      PeerVpcId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.VpcId
-      VpcId: vpc-0ce72f8445f66b6cf
-
   ExampleSpringLoyaltyPostgreSQLSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -69,32 +63,6 @@ Resources:
     Properties:
       CidrIp: !Sub ['${BastionHostPrivateIP}/32', BastionHostPrivateIP: !ImportValue ExampleSpringLoyaltyPostgreSQLBastionHostPrivateIP]
       Description: Used to restrict RDS public access to only bastion host example-spring-loyalty-db-bastion-host
-      FromPort: 5432
-      ToPort: 5432
-      IpProtocol: tcp
-      GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
-
-  # Add route: All traffic to (destination) the RDS VPC CIDR block is via the VPC Peering Connection (target)
-  VpcPeeringBuildkiteAgentRoute:
-    Type: AWS::EC2::Route
-    Properties:
-      DestinationCidrBlock: 172.31.0.0/16
-      RouteTableId: rtb-0bc45e8cfe39f9737
-      VpcPeeringConnectionId: !Ref VpcPeeringBuildkiteAgentRds
-
-  # Add route: All traffic to (destination) the Buildkite agent CIDR block is via the VPC Peering Connection (target)
-  VpcPeeringRdsRoute:
-    Type: AWS::EC2::Route
-    Properties:
-      DestinationCidrBlock: 10.0.0.0/16
-      RouteTableId: rtb-b6ecb9d0
-      VpcPeeringConnectionId: !Ref VpcPeeringBuildkiteAgentRds
-
-  ExampleSpringLoyaltyBuildkiteAgentWhitelist:
-    Type: AWS::EC2::SecurityGroupIngress
-    Properties:
-      CidrIp: 10.0.0.0/16
-      Description: Used to restrict RDS public access to only Buildkite agent
       FromPort: 5432
       ToPort: 5432
       IpProtocol: tcp
