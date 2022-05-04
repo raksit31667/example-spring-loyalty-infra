@@ -21,6 +21,7 @@ Resources:
       StorageEncrypted: false
       EnableCloudwatchLogsExports:
         - postgresql
+      EnablePerformanceInsights: true
       VPCSecurityGroups:
         - !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
 
