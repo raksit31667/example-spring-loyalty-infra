@@ -67,3 +67,23 @@ Resources:
       ToPort: 5432
       IpProtocol: tcp
       GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
+
+  ExampleSpringLoyaltyPostgreSQLBuildkiteAgent1Whitelist:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      CidrIp: 13.215.215.225/32
+      Description: Used to restrict RDS public access to only Buildkite agent
+      FromPort: 5432
+      ToPort: 5432
+      IpProtocol: tcp
+      GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
+
+  ExampleSpringLoyaltyPostgreSQLBuildkiteAgent2Whitelist:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      CidrIp: 52.220.57.148/32
+      Description: Used to restrict RDS public access to only Buildkite agent
+      FromPort: 5432
+      ToPort: 5432
+      IpProtocol: tcp
+      GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
