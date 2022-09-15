@@ -47,17 +47,31 @@ Resources:
               echo $ssh_public_key > .ssh/authorized_keys
           EOF
           }
+          
+          function remove_ssh_user() {
+            local username="$1"
+            sudo killall -u username
+            userdel -f -r $username
+          }
 
-          usernames=(
+          active_usernames=(
             'raksit.man'
+          )
+          inactive_usernames=(
+            
           )
           ssh_public_keys=(
             'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHIXfKDF8F1ed/v6EkABGBW9CO7nbB4823ISls4pvRHH2a4PuzSvZLsT3gIgcrJGNfSeAHm2+ltyBlN0jkMkCwjcLqvNAjTQDy6RT2Dkn6QZYRiKOQXQTPVUCmbfS8UK+vrpgqOjYlyOAT2CoggWcGLPywtF02pCpJZjMOfqzEyEw9o8VqEm5GoJAXvMqkBCNnKps9kODyAvYrWDEtMM9+hOzao1katPHrBoovJFfPA/PkCqewXqJ8X+DNVXMJ97+n2vLb8+XEyLUi93exyJWLS3/JBIbCsJnMtQrEJwtxmt8XcpL1OGwjF9DhvjRnCW7NUOjs+rL9eA0n2KCMKp1iF7954BrnVtOvg5IfQ4VpeUIm8hgqaorfl3GOwqgNVgEIimFMxMq8SsYF1P3dWoXCG7OUaD/8+zr24YKQNIrV3IkJ7elI45cj2WFvYrkZnpR96RiVES+yGPUXh6YLr0PkgvvNG1uYk2SgUfxjdDCWFRtQMej0CJoPebLHZgdSx0c= raksit.man@Raksits-MacBook-Pro.local'
           )
 
-          for i in "${!usernames[@]}";
+          for i in "${!active_usernames[@]}";
           do
-            create_ssh_user "${usernames[i]}" "${ssh_public_keys[i]}" || true
+            create_ssh_user "${active_usernames[i]}" "${ssh_public_keys[i]}" || true
+          done
+          
+          for i in "${!inactive_usernames[@]}";
+          do
+            remove_ssh_user "${inactive_usernames[i]}" || true
           done
           --//--
 
