@@ -6,10 +6,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: EKS cluster using a VPC with two public subnets
 Parameters:
-  EKSClusterName:
-    Type: String
-    Description: Name of k8s cluster
-    Default: raksit31667
   NumWorkerNodes:
     Type: Number
     Description: Number of worker nodes to create
