@@ -414,8 +414,7 @@ Resources:
         - !Ref PrivateSubnet1
         - !Ref PrivateSubnet2
       Tags:
-        - Key: Name
-          Value: "WorkerNodesAutoScalingGroup"
+        Name: "WorkerNodesAutoScalingGroup"
   WorkerNodesLaunchConfiguration:
     Type: AWS::AutoScaling::LaunchConfiguration
     # Wait until cluster is ready before launching worker nodes
