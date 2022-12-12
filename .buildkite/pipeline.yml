@@ -9,7 +9,7 @@ steps:
 
   - block: ":shipit: Deploy EKS?"
 
-  - label: ":aws-eks: Deploy EKS stacks"
+  - label: ":amazon-eks: Deploy EKS stacks"
     command: ./deploy-eks.sh
     plugins:
       - cultureamp/aws-assume-role#v0.1.0:
