@@ -5,7 +5,7 @@ Resources:
   EksServiceAccountRole:
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: eks-quickstart-ServiceAccountRole
+      RoleName: eks-raksit31667-ServiceAccountRole
       Path: /
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
@@ -13,7 +13,7 @@ Resources:
           - Effect: Allow
             Principal:
               Federated:
-                - !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.ap-southeast-1.amazonaws.com/id/A5EB6FC7FB3B22569B55CD01605AD3CB"
+                - !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.ap-southeast-1.amazonaws.com/id/98DE2C255095BD3D073BF2FA84F409B2"
             Action:
               - 'sts:AssumeRoleWithWebIdentity'
       ManagedPolicyArns:
