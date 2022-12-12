@@ -15,10 +15,13 @@ powered by AWS Cloudformation.
 
 1. Launch and run Elastic CI Stack for AWS by following
    the [instructions](https://buildkite.com/docs/tutorials/elastic-ci-stack-aws).
-2. Create IAM role for `arn:aws:iam::<aws-account-id>:role/ExampleSpringLoyaltyInfra` with `AdministratorAccess`
+2. Create IAM role for `arn:aws:iam::<aws-account-id>:role/ExampleSpringLoyaltyInfra`
+   with `AdministratorAccess`
    policy to perform Cloudformation manually.
-3. Add `arn:aws:iam::<aws-account-id>:role/buildkite-Role` to trust relationship.
-4. For AWS RDS bastion host, create a EC2 keypair as we will use private key to access AWS RDS DB instance.
+3. Add `arn:aws:iam::<aws-account-id>:role/buildkite-Role`
+   and `arn:aws:iam::<aws-account-id>:user/example-spring-loyalty` to trust relationship.
+4. For AWS RDS bastion host, create a EC2 keypair as we will use private key to access AWS RDS DB
+   instance.
 
 ### Access EKS cluster
 
@@ -65,10 +68,12 @@ Here is the basic skeleton for this repository:
 ├── deploy.sh
 ```
 
-- The [Buildkite](https://buildkite.com/) CICD pipeline script can be found beneath the `.buildkite` directory.
+- The [Buildkite](https://buildkite.com/) CICD pipeline script can be found beneath the `.buildkite`
+  directory.
 - The build step specifications are based from `deploy.sh`.
 - We separate each AWS Cloudformation stack into folders with template underneath. Refer
-  to [AWS Cloudformation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) for
+  to [AWS Cloudformation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+  for
   template definition.
 
 ## Installing Git hooks
