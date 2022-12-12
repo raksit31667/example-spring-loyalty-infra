@@ -88,3 +88,13 @@ Resources:
       ToPort: 5432
       IpProtocol: tcp
       GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
+
+  ExampleSpringLoyaltyPostgreSQLEKSWhitelist:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      CidrIp: 10.100.0.0/16
+      Description: Used to restrict RDS public access to only EKS
+      FromPort: 5432
+      ToPort: 5432
+      IpProtocol: tcp
+      GroupId: !GetAtt ExampleSpringLoyaltyPostgreSQLSecurityGroup.GroupId
