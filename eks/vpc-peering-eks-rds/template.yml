@@ -6,14 +6,14 @@ Resources:
     Type: AWS::EC2::VPCPeeringConnection
     Properties:
       PeerVpcId: vpc-e3488985
-      VpcId: vpc-09746d8994a7b3394
+      VpcId: vpc-0672dbfee077a98b8
 
 #   Add route: All traffic to (destination) the RDS VPC CIDR block is via the VPC Peering Connection (target)
   VpcPeeringEksRoute:
     Type: AWS::EC2::Route
     Properties:
       DestinationCidrBlock: 172.31.0.0/16
-      RouteTableId: rtb-0f934c0221f25c6a4
+      RouteTableId: rtb-04519b00a5e81d6d5
       VpcPeeringConnectionId: !Ref VpcPeeringEksRds
 
 #   Add route: All traffic to (destination) the EKS cluster CIDR block is via the VPC Peering Connection (target)
