@@ -9,7 +9,7 @@ for directory in $directories
 do
   directory_name="$(basename $directory)"
 
-  if [[ $directory_name == 'eks-raksit31667' ]]; then
+  if [[ $directory_name == 'eks' ]]; then
     continue
   fi
 
