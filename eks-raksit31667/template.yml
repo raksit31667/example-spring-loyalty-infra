@@ -250,7 +250,7 @@ Resources:
     Type: AWS::EKS::Cluster
     Properties:
       Name: !Ref AWS::StackName
-      Version: "1.24"
+      Version: "1.19"
       RoleArn: !GetAtt ControlPlaneRole.Arn
       ResourcesVpcConfig:
         SecurityGroupIds:
