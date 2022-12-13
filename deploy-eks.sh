@@ -14,8 +14,8 @@ aws cloudformation deploy \
 --template-file "eks/iam-role-eks-service-account/template.yml" \
 --no-fail-on-empty-changeset
 
-aws cloudformation deploy \
---stack-name "vpc-peering-eks-rds" \
---capabilities CAPABILITY_NAMED_IAM \
---template-file "eks/vpc-peering-eks-rds/template.yml" \
---no-fail-on-empty-changeset
+#aws cloudformation deploy \
+#--stack-name "vpc-peering-eks-rds" \
+#--capabilities CAPABILITY_NAMED_IAM \
+#--template-file "eks/vpc-peering-eks-rds/template.yml" \
+#--no-fail-on-empty-changeset
