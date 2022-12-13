@@ -33,7 +33,7 @@ Mappings:
   # IMPORTANT NOTE: Choose AWS EKS compatible ami IDs only
   EksAmiIds:
     ap-southeast-1:
-      Standard: ami-01bb732da5029d896
+      Standard: ami-02c432d96f51e5832
 
 Resources:
   #============================================================================#
