@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for VPC peering connection of EKS and RDS"
+
+Resources:
+  VpcPeeringEksRds:
+    Type: AWS::EC2::VPCPeeringConnection
+    Properties:
+      PeerVpcId: vpc-e3488985
+      VpcId: vpc-09746d8994a7b3394
+
+#   Add route: All traffic to (destination) the RDS VPC CIDR block is via the VPC Peering Connection (target)
+  VpcPeeringEksRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 172.31.0.0/16
+      RouteTableId: rtb-0f934c0221f25c6a4
+      VpcPeeringConnectionId: !Ref VpcPeeringEksRds
+
+#   Add route: All traffic to (destination) the EKS cluster CIDR block is via the VPC Peering Connection (target)
+  VpcPeeringRdsRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 10.100.0.0/16
+      RouteTableId: rtb-b6ecb9d0
+      VpcPeeringConnectionId: !Ref VpcPeeringEksRds
