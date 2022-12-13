@@ -13,7 +13,7 @@ Resources:
           - Effect: Allow
             Principal:
               Federated:
-                - !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.ap-southeast-1.amazonaws.com/id/98DE2C255095BD3D073BF2FA84F409B2"
+                - !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.ap-southeast-1.amazonaws.com/id/8856F2E1301B83B6D8FED23C1973FB25"
             Action:
               - 'sts:AssumeRoleWithWebIdentity'
       ManagedPolicyArns:
